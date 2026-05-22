@@ -101,6 +101,7 @@ public class SleepTrackerAppTest {
         SleepAnalysisResult result = function.apply(List.of());
         assertEquals(0L, result.getValue());
     }
+
     @Test
     void shouldReturnSleeplessNightsWhenDaySessionOnly() {
         // сессия только днём — не задевает 0:00-6:00

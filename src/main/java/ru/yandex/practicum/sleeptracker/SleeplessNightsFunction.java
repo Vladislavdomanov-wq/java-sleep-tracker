@@ -19,7 +19,7 @@ public class SleeplessNightsFunction implements Function<List<SleepingSession>, 
         LocalDate firstDate = first.getStartSleep().toLocalDate();
         LocalDate lastDate = last.getFinishSleep().toLocalDate();
 
-       long totalNight = ChronoUnit.DAYS.between(firstDate,lastDate) + 1;
+        long totalNight = ChronoUnit.DAYS.between(firstDate, lastDate) + 1;
         long nightsWithSleep = sleepingSessions.stream()
                 .filter(s -> {
                     LocalTime start = s.getStartSleep().toLocalTime();
