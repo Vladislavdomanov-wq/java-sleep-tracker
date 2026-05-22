@@ -1,6 +1,8 @@
 package ru.yandex.practicum.sleeptracker;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.function.Function;
 
@@ -17,6 +19,15 @@ public class SleeplessNightsFunction implements Function<List<SleepingSession>, 
         LocalDate firstDate = first.getStartSleep().toLocalDate();
         LocalDate lastDate = last.getFinishSleep().toLocalDate();
 
-
+       long totalNight = ChronoUnit.DAYS.between(firstDate,lastDate) + 1;
+        long nightsWithSleep = sleepingSessions.stream()
+                .filter(s -> {
+                    LocalTime start = s.getStartSleep().toLocalTime();
+                    LocalTime finish = s.getFinishSleep().toLocalTime();
+                    return start.isBefore(LocalTime.of(6, 0)) && finish.isAfter(LocalTime.of(0, 0));
+                })
+                .count();
+        long sleepless = totalNight - nightsWithSleep;
+        return new SleepAnalysisResult("Количество бессонных ночей", sleepless);
     }
 }

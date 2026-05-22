@@ -20,6 +20,8 @@ public class SleepTrackerApp {
         functions.add(new MaxSessionDurationFunction());
         functions.add(new AverageSessionDurationFunction());
         functions.add(new BadSessionDurationFunction());
+        functions.add(new SleeplessNightsFunction());
+        functions.add(new ChronotypeFunction());
 
         try {
             SleepTrackerAppLoader loader = new SleepTrackerAppLoader();
