@@ -24,7 +24,7 @@ public class SleepTrackerAppLoader {
                 LocalDateTime startSleep = LocalDateTime.parse(parts[0], formatter);
                 LocalDateTime finishSleep = LocalDateTime.parse(parts[1], formatter);
                 SleepQuality sleepQuality = SleepQuality.valueOf(parts[2]);
-                SleepingSession sleepingSession = new SleepingSession(startSleep , finishSleep , sleepQuality);
+                SleepingSession sleepingSession = new SleepingSession(startSleep, finishSleep, sleepQuality);
                 tracker.add(sleepingSession);
             }
         } catch (IOException e) {
