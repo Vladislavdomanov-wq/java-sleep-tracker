@@ -6,10 +6,13 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class ChronotypeFunction implements Function<List<SleepingSession>, SleepAnalysisResult> {
+
+    private static final String DESCRIPTION = "Хронотип пользователя";
+
     @Override
     public SleepAnalysisResult apply(List<SleepingSession> sessions) {
         if (sessions.isEmpty()) {
-            return new SleepAnalysisResult("Хронотип пользователя", "Нет данных");
+            return new SleepAnalysisResult(DESCRIPTION, "Нет данных");
         }
         List<SleepingSession> nightSessions = sessions.stream()
                 .filter(s -> {
@@ -36,14 +39,14 @@ public class ChronotypeFunction implements Function<List<SleepingSession>, Sleep
 
         long golub = nightSessions.size() - owls - javoronok;
 
-        String result;
+        Chronotype result;
         if (owls > javoronok && owls > golub) {
-            result = "Сова";
+           result = Chronotype.OWL;
         } else if (javoronok > owls && javoronok > golub) {
-            result = "Жаворонок";
+            result = Chronotype.LARK;
         } else {
-            result = "Голубь";
+            result = Chronotype.DOVE;
         }
-        return new SleepAnalysisResult("Хронотип пользователя", result);
+        return new SleepAnalysisResult(DESCRIPTION, result.getDisplayName());
     }
 }

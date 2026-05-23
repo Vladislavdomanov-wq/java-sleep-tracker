@@ -8,10 +8,12 @@ import java.util.function.Function;
 
 public class SleeplessNightsFunction implements Function<List<SleepingSession>, SleepAnalysisResult> {
 
+    private static final String DESCRIPTION = "Количество бессонных ночей - ";
+
     @Override
     public SleepAnalysisResult apply(List<SleepingSession> sleepingSessions) {
         if (sleepingSessions.isEmpty()) {
-            return new SleepAnalysisResult("Количество бессонных ночей", 0);
+            return new SleepAnalysisResult(DESCRIPTION, 0);
         }
         SleepingSession first = sleepingSessions.get(0);
         SleepingSession last = sleepingSessions.get(sleepingSessions.size() - 1);
@@ -28,6 +30,6 @@ public class SleeplessNightsFunction implements Function<List<SleepingSession>, 
                 })
                 .count();
         long sleepless = totalNight - nightsWithSleep;
-        return new SleepAnalysisResult("Количество бессонных ночей", sleepless);
+        return new SleepAnalysisResult(DESCRIPTION, sleepless);
     }
 }

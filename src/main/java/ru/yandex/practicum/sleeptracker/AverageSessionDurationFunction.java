@@ -6,6 +6,8 @@ import java.util.OptionalDouble;
 import java.util.function.Function;
 
 public class AverageSessionDurationFunction implements Function<List<SleepingSession>, SleepAnalysisResult> {
+
+    private static final String DESCRIPTION = "Средняя продолжительность сессии (мин) - ";
     @Override
     public SleepAnalysisResult apply(List<SleepingSession> sessions) {
         OptionalDouble average = sessions.stream()
@@ -13,7 +15,7 @@ public class AverageSessionDurationFunction implements Function<List<SleepingSes
                 .average();
 
         double result = average.orElse(0.0);
-        return new SleepAnalysisResult("Средняя продолжительность сессии (мин)", result);
+        return new SleepAnalysisResult(DESCRIPTION, result);
     }
 }
 

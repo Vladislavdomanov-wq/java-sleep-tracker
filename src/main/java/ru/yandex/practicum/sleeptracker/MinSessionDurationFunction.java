@@ -6,6 +6,9 @@ import java.util.Optional;
 import java.util.function.Function;
 
 public class MinSessionDurationFunction implements Function<List<SleepingSession>, SleepAnalysisResult> {
+
+    private static final String DESCRIPTION = "Минимальная продолжительность сессии (мин) - ";
+
     @Override
     public SleepAnalysisResult apply(List<SleepingSession> sessions) {
         Optional<Long> min = sessions.stream()
@@ -13,6 +16,6 @@ public class MinSessionDurationFunction implements Function<List<SleepingSession
                 .min(Long::compare);
 
         long result = min.orElse(0L);
-        return new SleepAnalysisResult("Минимальная продолжительность сессии (мин)", result);
+        return new SleepAnalysisResult(DESCRIPTION, result);
     }
 }
