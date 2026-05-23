@@ -8,6 +8,7 @@ import java.util.function.Function;
 public class AverageSessionDurationFunction implements Function<List<SleepingSession>, SleepAnalysisResult> {
 
     private static final String DESCRIPTION = "Средняя продолжительность сессии (мин) - ";
+
     @Override
     public SleepAnalysisResult apply(List<SleepingSession> sessions) {
         OptionalDouble average = sessions.stream()
